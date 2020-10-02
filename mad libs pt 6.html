@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> MAD LIBS </title>
+	</head>
+	
+	<body>
+		
+		<!-- Start with our HTML-->
+		
+		<!-- Let's create 2 sections in our web page-->
+		
+		<!-- 1 div for where the users will type -->
+		<div id="inputSection">
+			
+			<label> Enter a <p id="wordType"></p></label>
+			
+			<input type="text" id="word" name="word">
+			<input type="button" id="btn" name="submit">
+			<input type="button" id="btnTellStory" name="submit">
+		
+		</div>
+		
+		<!-- Another div to display the story -->
+		<div id="content">
+		
+			<p id="story"> The </p>
+			
+		</div>
+	
+		<div id="wordBankArea">
+		
+			<label> WORD BANK </label>
+			<p id="wordBank"></p>
+			
+		</div>
+		
+		<!-- Let's start writing our JavaScript -->
+		<script>
+		
+			//Create a function to access an HTML element by its specific ID
+			function $(id){
+				return document.getElementById(id);
+			}
+			
+			//We need some variables that hold the content of our HTML elements 
+			var word;
+			
+			var story;
+			
+			//Next let's make an empty array for our wordbank
+			var wordBank = [];
+			
+			//We need to randomly determine if our word is going to be a 
+			//Noun, Verb, or Adjective
+			
+						//We'll use the Math object and it's random() function
+			//To fix our whole number issue, lets wrap the math.random() result 
+			//Inside of a Math.floor() function
+			var wordType = Math.floor(Math.random() * 3); //Why 3????
+	
+						console.log(wordType);
+				
+				//We need to determine what the random numbers mean
+				//What happens if its a 0? A 1? A 2?
+				if(wordType == 0){
+					$("wordType").innerHTML = "noun"; 
+				}
+				else if(wordType == 1){
+					$("wordType").innerHTML = "verb"; 				
+				}
+				else if(wordType == 2){
+					$("wordType").innerHTML = "adjective"; 
+				}
+		
+			
+			
+			//What happens when the user hit the button?
+			//Tell the computer to listen for when the user clicks the button
+			//First get the element by id
+			$("btn").addEventListener("click", getWord); //Then add an event listener, specifically for the "click" event
+			
+			//Listen for when the tell story button is clicked
+			$("btnTellStory").addEventListener("click", tellStory);
+			
+			
+			function getWord(){
+				//We'll use the Math object and it's random() function
+				//To fix our whole number issue, lets wrap the math.random() result 
+				//Inside of a Math.floor() function
+			
+				$("wordBank").innerHTML = "";
+				word = {type: wordType, wrd: $("word").value};
+
+				//Add word to word bank
+				wordBank.push(word);
+				console.log(wordBank);//Check what's happening
+				
+				for(var i=0; i < wordBank.length; i++){
+					
+					$("wordBank").innerHTML += wordBank[i].wrd + "\n";
+				} 
+				
+			 wordType = Math.floor(Math.random() * 3); //Why 3????
+
+				if(wordType == 0){
+					$("wordType").innerHTML = "noun"; 
+				}
+				else if(wordType == 1){
+					$("wordType").innerHTML = "verb"; 				
+				}
+				else if(wordType == 2){
+					$("wordType").innerHTML = "adjective"; 
+				}	
+			}
+	
+			//Make a function to tell the story
+			function tellStory(){
+				//Loop through our array to add words to our story
+				for(var i=0; i < wordBank.length; i++){
+				
+					//Get the element with the id of story
+					//Add whatever word is next in the array
+					$("story").innerHTML += " " + wordBank[i].wrd + " ";
+				}
+			}
+						
+		</script>
+	</body>
+	
+	
+</html>
