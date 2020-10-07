@@ -52,10 +52,14 @@
 			//Next let's make an empty array for our wordbank
 			var wordBank = [];
 			
+			var articles = ["the", "a", "an"];
+			var prepositions = ["as", "after", "in", "to", "on", "with"];
+			var conjunctions = ["are", "for", "and", "nor", "but", "or", "yet", "so"];
+				
 			//We need to randomly determine if our word is going to be a 
 			//Noun, Verb, or Adjective
 			
-						//We'll use the Math object and it's random() function
+			//We'll use the Math object and it's random() function
 			//To fix our whole number issue, lets wrap the math.random() result 
 			//Inside of a Math.floor() function
 			var wordType = Math.floor(Math.random() * 3); //Why 3????
@@ -129,15 +133,13 @@
 						adj -> noun
 						noun -> verb
 					*/
-
+					
 					if(wordBank[i].type == 2 && wordBank[i+1].type == 0){
 						alert("true");
 						console.log("it worked");
 						$("story").innerHTML += " " + wordBank[i].wrd + " " + wordBank[i+1].wrd;
 					}
-					else if(wordBank[i].type == 0 && wordBank[i+1].type == 1){
-						$("story").innerHTML += " " + wordBank[i].wrd + " " + wordBank[i+1].wrd;
-					}
+					else 
 					
 					
 				}
